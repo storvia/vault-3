@@ -206,6 +206,24 @@
         background: var(--off-black);
       }
     }
+      .copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: 1px solid var(--signal-green);
+      color: var(--signal-green);
+      font-size: 12px;
+      padding: 6px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .copy-btn:hover {
+      background: var(--signal-green);
+      color: var(--off-black);
+    }
   </style></head>
 <body>  <!-- PAGE 1 -->  <section class="page"><h1 class="headline">
   The algorithm didn’t betray you.<br />
@@ -215,6 +233,7 @@
 <div class="system-tag">Platform Dependency Reset — Private Prompt</div>
 
 <div class="prompt-block">
+  <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
   <div class="prompt-text">
 
 “You’re me at 36 with fuck-you money. I’m 27, was making <span class="signal">$8,000/month</span> from TikTok, woke up to <span class="warning">zero reach</span>.
@@ -270,5 +289,21 @@ What income stream did you build in <span class="signal">90 days</span> that nev
   This turns the prompt from therapy into strategy.
 </div>
 
-  </section></body>
+  </section>  <script>
+    function copyPrompt() {
+      const text = `You’re me at 36 with fuck-you money.
+I’m 27, was making $8,000/month from TikTok, woke up to zero reach.
+
+What income stream did you build in 90 days that never depended on an algorithm again?
+The product.
+The traffic source.
+The exact steps.`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = 'Copied';
+        setTimeout(() => btn.innerText = 'Copy Prompt', 2000);
+      });
+    }
+  </script></body>
 </html>
